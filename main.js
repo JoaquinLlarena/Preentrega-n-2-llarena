@@ -60,13 +60,19 @@ alert ("gracias por su compra")
  }
  else {alert("hasta luego")}
 
-
-if (usuario = confirm("¿quieres crear un usuario?")) {
-  let usuario = prompt ("ingresa tu nombre")
-  let contraseña = prompt ("ingresa tu contraseña")
-  alert ("bienvenido  " + usuario)
+ //crear usuario 
+function crearUsuario () {
+  if (usuario = confirm("¿quieres crear un usuario?")) {
+    let usuario = prompt ("ingresa tu nombre")
+    let contraseña = prompt ("ingresa tu contraseña")
+    alert ("bienvenido  " + usuario)
+  
+  }
+  else {
+    alert ("nos vemos en la proxima")
+  }
+  
 
 }
-else {
-  alert ("nos vemos en la proxima")
-}
+
+crearUsuario ()
