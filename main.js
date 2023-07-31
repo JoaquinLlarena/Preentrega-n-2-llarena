@@ -1,109 +1,78 @@
+// 2da PREENTREGA
 
 
 
+//creando una funcion constructora 
+const Producto = function (nombre, precio, talle, stock) {
+  this.nombre = nombre
+  this.precio = precio
+  this.talle = talle
+  this.stock = stock
+}
 
-//tienda de ropa 
-alert("Bienvenido a TacticalShop");
 
-let realizarCompra = true;
+//creando los productos a partir de la funcion constructora
+let producto1 = new Producto("hoodie", 12000, "m", 5)
+let producto2 = new Producto("campera", 15000, "s", 10)
+let producto3 = new Producto("remera", 1000, "x", 11)
+let producto4 = new Producto("pantalon", 20000, "m", 7)
+let producto5 = new Producto("gorra", 6000, "m", 20)
 
-while (realizarCompra) {
-  let consulta = confirm("¿Quieres iniciar una compra?");
 
-  if (consulta) {
-    let producto;
-    let seleccionValida = false;
+//creando una lista de los producuto guardandolos en un array
+let lista = [producto1, producto2, producto3, producto4, producto5]
 
-    do {
-      producto = prompt("¿Qué producto necesitas?\n◉ Buzo\n◉ Pantalón\n◉ Remera\n◉ Zapatilla").toLowerCase();
 
-      switch (producto) {
-        case "buzo":
-          alert("Elegiste buzo");
-          seleccionValida = true;
-          break;
-        case "pantalon":
-          alert("Elegiste pantalón");
-          seleccionValida = true;
-          break;
-        case "zapatilla":
-          alert("Elegiste zapatilla");
-          seleccionValida = true;
-          break;
-        case "remera":
-          alert("Elegiste remera");
-          seleccionValida = true;
-          break;
-        default:
-          alert("Elige un producto válido por favor");
-      }
-    } while (!seleccionValida);
+//funcion para encontrar el producto mediante un prompt
+function encontrarProducto() {
+  let palabraClave = prompt("¿que producto desea?")
+  let resultado = lista.filter((producto) => producto.nombre.includes(palabraClave))
 
-    // Talle del producto
-    let talle;
-    let talleValido = false;
-
-    do {
-      talle = prompt("¿Qué talle estás buscando?\n◉ S\n◉ M\n◉ X\n◉ XL").toLowerCase();
-
-      switch (talle) {
-        case "s":
-          alert("Talle S");
-          talleValido = true;
-          break;
-        case "m":
-          alert("Talle M");
-          talleValido = true;
-          break;
-        case "x":
-          alert("Talle X");
-          talleValido = true;
-          break;
-        case "xl":
-          alert("Talle XL");
-          talleValido = true;
-          break;
-        default:
-          alert("Elige un talle válido por favor");
-      }
-    } while (!talleValido);
-
-    let continuar = confirm("¿Deseas realizar otra compra?");
-
-    if (!continuar) {
-      realizarCompra = false;
-    }
+  if (resultado.length > 0) {
+    console.table(resultado)
   } else {
-    realizarCompra = false;
+    alert("el producto: " + palabraClave + " no se encuentra")
   }
-}
-
-alert("Gracias por su compra. ¡Hasta luego!");
-
- 
-
-
-
-
-
-
-
-
-
-
- //crear usuario 
-function crearUsuario () {
-  if (usuario = confirm("¿quieres crear un usuario?")) {
-    let usuario = prompt ("ingresa tu nombre").toLowerCase()
-    let contraseña = prompt ("ingresa tu contraseña")
-    alert ("bienvenido  " + usuario)
-  
-  }
-  else {
-    alert ("nos vemos en la proxima")
-  }
-  
 
 }
 
-crearUsuario ()
+//boton para encontrar el producto
+let boton = document.getElementById("btn")
+boton.addEventListener("click", encontrarProducto)
+
+//funcion para crear productos 
+
+function agregarProducto() {
+
+  let nombre = prompt("nombre del producto")
+  let precio = parseInt(prompt("precio del producto"))
+  let talle = prompt("talle del producto")
+  let stock = parseInt(prompt("stock del producto"))
+
+  if (isNaN(precio) || isNaN(stock) || nombre == "" || talle == "") {
+    alert("estos valores no son validos")
+    return
+  }
+
+  let producto = new Producto (nombre, precio, talle, stock)
+
+  lista.push(producto)
+  console.table(lista)
+
+  alert ("se creo el producto: " + nombre)
+
+
+}
+
+
+//boton para crar un producto
+let boton2 = document.getElementById("btn2")
+boton2.addEventListener("click", agregarProducto)
+
+
+
+
+
+
+
+
